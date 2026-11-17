@@ -4,7 +4,7 @@
 #include <stdint.h>
 
 /*
- * The MSX ROMs: files in the data folder's roms/ (emu_rom_read()), named as on the boards.
+ * The MSX ROMs: files in the machine's roms/ folder (emu_rom_read()), named as on the boards.
  */
 typedef enum {
     ROM_MSX1,                   /* msx.rom: MSX1 BIOS + BASIC, 32 KB */

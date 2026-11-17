@@ -93,13 +93,13 @@ static bool start(void)
     static char message[1400];
     if (msx2) {
         if (!rom_store_load(ROM_MSX2, s_bios[1]) || !rom_store_load(ROM_MSX2_SUB, s_sub)) {
-            snprintf(message, sizeof(message), "No MSX2 ROMs: copy msx2.rom and msx2ext.rom into %s/roms.",
-                     emu_data_dir());
+            snprintf(message, sizeof(message), "No MSX2 ROMs: copy msx2.rom and msx2ext.rom into %s.",
+                     emu_rom_dir());
             emu_set_message(message);
             return false;
         }
     } else if (!rom_store_load(ROM_MSX1, s_bios[0])) {
-        snprintf(message, sizeof(message), "No MSX1 ROM: copy msx.rom into %s/roms.", emu_data_dir());
+        snprintf(message, sizeof(message), "No MSX1 ROM: copy msx.rom into %s.", emu_rom_dir());
         emu_set_message(message);
         return false;
     }

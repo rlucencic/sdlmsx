@@ -124,7 +124,7 @@ cmake -S . -B build -G Ninja && cmake --build build
 
 ### 3. ROMs
 
-In the data folder's `roms/` (`~/rpi5emu/roms`), named as esp32msx's:
+In the data folder's `msx/roms/` (`~/rpi5emu/msx/roms`), named as esp32msx's:
 `msx.rom` (MSX1), `msx2.rom` and `msx2ext.rom` (MSX2), `disk.rom` (Disk
 BASIC), `nextor.rom` (Nextor for the hard disk). Not part of this
 repository.
@@ -179,7 +179,7 @@ flowchart LR
   EMU -- picture --> WIN
   EMU -- sound --> SND[SDL audio]
   WIN -- keys · mouse --> EMU
-  DATA[("~/rpi5emu<br>roms · msx")]
+  DATA[("~/rpi5emu<br>msx · msx/roms")]
   EMU <--> DATA
   WEB <--> DATA
 ```

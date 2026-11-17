@@ -12,7 +12,7 @@ this project is the glue.
 |---|---|
 | `src/main.c` | The MSX as an `emu_machine_t`: esp32msx's `main/main.c` through `../rpi5emu/tools/port_glue.py` and `port_finish.py`, then: the mapper up to 4 MB as on the Tab5, a new size allocated at the restart (the boards restart into it), the ROM messages |
 | `src/settings.c` | esp32msx's, over `emu/nvs.h` (section `msx`) |
-| `src/rom_store.c` | `~/rpi5emu/roms/` through `emu_rom_read()` (`port_rom_store.py`): msx.rom ... nextor.rom |
+| `src/rom_store.c` | `~/rpi5emu/msx/roms/` through `emu_rom_read()` (`port_rom_store.py`): msx.rom ... nextor.rom |
 
 Keep `src/main.c` in step with esp32msx's `main/main.c`.
 
