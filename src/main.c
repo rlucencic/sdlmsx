@@ -1,8 +1,8 @@
 /*
- * MSX1 and MSX2 emulator on the Raspberry Pi 5.
+ * MSX1 and MSX2 emulator with SDL 3.
  *
  * The Pi's side (window, sound, keyboard, setup screen, web page, console,
- * settings, the data folder) is the shared runtime in ../rpi5emu, the
+ * settings, the data folder) is the shared runtime in ../sdlemu, the
  * machine esp32msx's; this file plugs the MSX into it, as esp32msx's
  * main/main.c does on the boards (and mostly is that file): memory,
  * ROMs, settings, keyboard map, joystick, the drives (two floppy

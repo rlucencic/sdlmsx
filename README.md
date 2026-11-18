@@ -1,13 +1,14 @@
-<h1 align="center">rpi5msx</h1>
+<h1 align="center">sdlmsx</h1>
 
 <p align="center">
-  <b>An MSX1 or MSX2 on the Raspberry Pi 5, in a window of its own.</b><br>
+  <b>An MSX1 or MSX2 in an SDL 3 window on Linux or macOS.</b><br>
   Z80 with the MSX's wait states, TMS9918A and V9938 with all their modes and commands, AY-3-8910 and SCC sound, floppy drives, a Nextor hard disk, ROM cartridges.
 </p>
 
 <p align="center">
   <img alt="Raspberry Pi 5" src="https://img.shields.io/badge/Raspberry%20Pi-5-c51a4a">
-  <img alt="Linux arm64" src="https://img.shields.io/badge/Linux-arm64-333">
+  <img alt="Linux arm64 and amd64" src="https://img.shields.io/badge/Linux-arm64%20%7C%20amd64-333">
+  <img alt="macOS arm64" src="https://img.shields.io/badge/macOS-arm64-333">
   <img alt="SDL 3" src="https://img.shields.io/badge/SDL-3-1d4ed8">
   <img alt="CPU" src="https://img.shields.io/badge/CPU-Z80-555">
   <img alt="MIT licence" src="https://img.shields.io/badge/licence-MIT-green">
@@ -25,28 +26,27 @@
   <sub>The MSX2 saving a program to a new disk, and the MSX1, on the Pi.</sub>
 </p>
 
-rpi5msx runs [esp32msx](https://github.com/rlucencic/esp32msx)'s MSX on a Raspberry Pi 5 with
-64-bit Linux, in a window of its own (X11 or Wayland, through SDL 3). The machine is the
+sdlmsx runs [esp32msx](https://github.com/rlucencic/esp32msx)'s MSX on 64-bit Linux (arm64 and amd64) and Apple Silicon macOS. SDL 3 provides the window, sound and input. The machine is the
 same code as on the ESP32 boards: esp32msx's platform-independent core and
 [esp32emu](https://github.com/rlucencic/esp32emu)'s CPU core, on
-[rpi5emu](https://github.com/rlucencic/rpi5emu), the family's Linux runtime: a setup
-screen in the window, sound, the Pi's keyboard and mouse, a web page on your network and a
+[sdlemu](https://github.com/rlucencic/sdlemu), the family's desktop runtime: a setup
+screen in the window, sound, the host's keyboard and mouse, a web page on your network and a
 console.
 
-It's one of the rpi5 family, the Raspberry Pi versions of the esp32 emulators:
-[rpi5zx](https://github.com/rlucencic/rpi5zx) (ZX Spectrum),
-[rpi5cpc](https://github.com/rlucencic/rpi5cpc) (Amstrad CPC),
-[rpi5cbm](https://github.com/rlucencic/rpi5cbm) (Commodore 64 and 128),
-[rpi5coco](https://github.com/rlucencic/rpi5coco) (Tandy Color Computer 2 and 3),
-[rpi5gs](https://github.com/rlucencic/rpi5gs) (Apple IIGS),
-[rpi5xl](https://github.com/rlucencic/rpi5xl) (Atari 800XL and 130XE),
-[rpi5ste](https://github.com/rlucencic/rpi5ste) (Atari STE),
-[rpi5pc](https://github.com/rlucencic/rpi5pc) (IBM PC/XT and PC/AT),
-[rpi5mac](https://github.com/rlucencic/rpi5mac) (Macintosh Plus, SE, Classic),
-[rpi5mac2](https://github.com/rlucencic/rpi5mac2) (Macintosh LC and II),
-[rpi5mac3](https://github.com/rlucencic/rpi5mac3) (Macintosh LC II and LC III),
-[rpi5arc](https://github.com/rlucencic/rpi5arc) (Acorn Archimedes),
-[rpi5ami](https://github.com/rlucencic/rpi5ami) (Amiga 500, 2000, 600, 1200).
+It belongs to the SDL desktop family of the ESP32 emulators:
+[sdlzx](https://github.com/rlucencic/sdlzx) (ZX Spectrum),
+[sdlcpc](https://github.com/rlucencic/sdlcpc) (Amstrad CPC),
+[sdlcbm](https://github.com/rlucencic/sdlcbm) (Commodore 64 and 128),
+[sdlcoco](https://github.com/rlucencic/sdlcoco) (Tandy Color Computer 2 and 3),
+[sdlgs](https://github.com/rlucencic/sdlgs) (Apple IIGS),
+[sdlxl](https://github.com/rlucencic/sdlxl) (Atari 800XL and 130XE),
+[sdlste](https://github.com/rlucencic/sdlste) (Atari STE),
+[sdlpc](https://github.com/rlucencic/sdlpc) (IBM PC/XT and PC/AT),
+[sdlmac](https://github.com/rlucencic/sdlmac) (Macintosh Plus, SE, Classic),
+[sdlmac2](https://github.com/rlucencic/sdlmac2) (Macintosh LC and II),
+[sdlmac3](https://github.com/rlucencic/sdlmac3) (Macintosh LC II and LC III),
+[sdlarc](https://github.com/rlucencic/sdlarc) (Acorn Archimedes),
+[sdlami](https://github.com/rlucencic/sdlami) (Amiga 500, 2000, 600, 1200).
 
 ## Features
 
@@ -104,11 +104,8 @@ It's one of the rpi5 family, the Raspberry Pi versions of the esp32 emulators:
 
 ### 1. What you need
 
-- A Raspberry Pi 5 with 64-bit Linux (developed on Ubuntu 26.04; any Linux with SDL 3.2 or
-  later should do)
-- The tools and libraries:
-  `sudo apt install build-essential cmake ninja-build pkg-config libsdl3-dev libsdl3-ttf-dev libpng-dev`
-- [esp32emu](https://github.com/rlucencic/esp32emu), [rpi5emu](https://github.com/rlucencic/rpi5emu)
+- 64-bit Linux (including Raspberry Pi 5) or Apple Silicon macOS with SDL 3.2 or newer. See [desktop build dependencies](https://github.com/rlucencic/sdlemu#building).
+- [esp32emu](https://github.com/rlucencic/esp32emu), [sdlemu](https://github.com/rlucencic/sdlemu)
   and [esp32msx](https://github.com/rlucencic/esp32msx), cloned next to this project
 - The ROMs (below)
 
@@ -116,24 +113,24 @@ It's one of the rpi5 family, the Raspberry Pi versions of the esp32 emulators:
 
 ```sh
 git clone https://github.com/rlucencic/esp32emu.git
-git clone https://github.com/rlucencic/rpi5emu.git
+git clone https://github.com/rlucencic/sdlemu.git
 git clone https://github.com/rlucencic/esp32msx.git
-git clone https://github.com/rlucencic/rpi5msx.git && cd rpi5msx
+git clone https://github.com/rlucencic/sdlmsx.git && cd sdlmsx
 cmake -S . -B build -G Ninja && cmake --build build
 ```
 
 ### 3. ROMs
 
-In the data folder's `msx/roms/` (`~/rpi5emu/msx/roms`), named as esp32msx's:
+In the data folder's `msx/roms/` (`~/sdlemu/msx/roms`), named as esp32msx's:
 `msx.rom` (MSX1), `msx2.rom` and `msx2ext.rom` (MSX2), `disk.rom` (Disk
 BASIC), `nextor.rom` (Nextor for the hard disk). Not part of this
 repository.
 
 ### 4. First start
 
-1. `build/rpi5msx`: the setup screen opens in a window.
+1. `build/sdlmsx`: the setup screen opens in a window.
 2. Choose the model and click **Start**.
-3. Put images into `~/rpi5emu/msx/`, drop them on the window or the web page, and
+3. Put images into `~/sdlemu/msx/`, drop them on the window or the web page, and
    insert them on the setup screen's **Disks** page.
 
 ## Using it
@@ -144,14 +141,14 @@ repository.
 | Full screen | Ctrl+Alt+F |
 | Give the mouse to the machine, take it back | A click in the window; Ctrl+Alt+G |
 | Run as fast as it goes (warp) | Ctrl+Alt+W, again for real speed |
-| Take a screenshot | Ctrl+Alt+S (into `~/rpi5emu/screenshots`), or the console's `s` |
-| Insert an image | The setup screen's **Disks** page, drop it on the window or the web page, or name it on the command line: `build/rpi5msx game.rom` |
-| Start straight into the machine | `build/rpi5msx -S`, with the setup screen's rows as `--choice`: `build/rpi5msx -S --choice Model=MSX1` |
+| Take a screenshot | Ctrl+Alt+S (into `~/sdlemu/screenshots`), or the console's `s` |
+| Insert an image | The setup screen's **Disks** page, drop it on the window or the web page, or name it on the command line: `build/sdlmsx game.rom` |
+| Start straight into the machine | `build/sdlmsx -S`, with the setup screen's rows as `--choice`: `build/sdlmsx -S --choice Model=MSX1` |
 | Show the window on another computer | Log in with `ssh -C -Y <the Pi>` and start it there: fine for still pictures; games want the Pi's own monitor |
 | Load or save a program | `SAVE"A:NAME.BAS"`, `LOAD"A:NAME.BAS"`, `FILES` |
 
-Images live in `~/rpi5emu/msx/`, settings in `~/.config/rpi5emu/settings.ini`; the
-inserted images are remembered across starts. `build/rpi5msx --help` lists the options.
+Images live in `~/sdlemu/msx/`, settings in `~/.config/sdlemu/settings.ini`; the
+inserted images are remembered across starts. `build/sdlmsx --help` lists the options.
 
 **Keyboard**: by position, the international MSX layout on a US keyboard:
 Ctrl, Shift and Caps Lock as themselves, left Alt GRAPH, right Alt CODE,
@@ -179,7 +176,7 @@ flowchart LR
   EMU -- picture --> WIN
   EMU -- sound --> SND[SDL audio]
   WIN -- keys · mouse --> EMU
-  DATA[("~/rpi5emu<br>msx · msx/roms")]
+  DATA[("~/sdlemu<br>msx · msx/roms")]
   EMU <--> DATA
   WEB <--> DATA
 ```
@@ -188,17 +185,17 @@ flowchart LR
   platform independent: the same code runs on the ESP32 boards.
 - **`src/`**: the glue, esp32msx's `main/main.c` ported: memory, ROMs, settings, keyboard map,
   drives and status.
-- **[rpi5emu](https://github.com/rlucencic/rpi5emu)**: the window, the setup screen, sound,
+- **[sdlemu](https://github.com/rlucencic/sdlemu)**: the window, the setup screen, sound,
   input, the web page, the console, the data folder and the settings.
 - **[esp32emu](https://github.com/rlucencic/esp32emu)**: the CPU core (Z80).
 
 ## Development
 
 ```sh
-../rpi5emu/tools/pi.sh rpi5msx build        # from another computer: sync to the Pi, build there
-../rpi5emu/tools/pi.sh rpi5msx run          # its window on this computer (ssh -C -Y)
-../rpi5emu/tools/pi.sh rpi5msx headless     # no window: drive it through the console
-../rpi5emu/tools/console.sh i 's /tmp/shot.png'
+../sdlemu/tools/pi.sh sdlmsx build        # from another computer: sync to the Pi, build there
+../sdlemu/tools/pi.sh sdlmsx run          # its window on this computer (ssh -C -Y)
+../sdlemu/tools/pi.sh sdlmsx headless     # no window: drive it through the console
+../sdlemu/tools/console.sh i 's /tmp/shot.png'
 ```
 
 `CLAUDE.md` has the details: the layout, how it was ported, the checks; esp32msx's own
